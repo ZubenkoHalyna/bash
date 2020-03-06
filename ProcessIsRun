@@ -1,0 +1,12 @@
+#!/bin/bash
+# checks if process is run
+#
+# usage: monitor <processname>
+
+while ps aux | grep $1 | grep -v $0 | grep -v grep > /dev/tty11
+do
+  sleep 5
+done
+
+clear
+echo process $1 has stopped

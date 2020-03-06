@@ -1,0 +1,3 @@
+#!/bin/bash
+# the goal is to check if a node-argulent is available
+ping -c 1 $1 &> /dev/null && echo node $1 is available || echo node $1  is not available

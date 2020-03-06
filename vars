@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ -z $1 ]
+then
+  echo enter a text
+  read TEXT
+else
+  TEXT=$1
+fi
+echo you have entered the text $TEXT
+exit 0
