@@ -1,0 +1,16 @@
+#!/bin/bash
+x=1234
+let "x += 1"
+echo "x = $x"       # x = 1235
+
+y=${x/12/aa}
+echo "y = $y"       # y = aa35
+let "y += 1"
+echo "y = $y"       # y = 1
+
+z=aa35
+echo "z = $z"       # z = aa35
+n=${z/aa/12}
+echo "n = $n"       # n = 1235
+let "n += 1"
+echo "n = $n"       # n = 1236

@@ -1,0 +1,22 @@
+#!/bin/bash
+string="A B  C   D"
+echo "The string var is \"$string\""    # частичные/нестрогие кавычки
+echo 'echo $string:'                    # полные/строгие кавчки
+echo $string                            # A B C D
+echo 'echo "$string":'
+echo "$string"                          # A B  C   D
+
+echo "----------------------------------------"
+string="'(]\\{}\$\""
+echo "The string var is \"'(]\\\\{}\\\$\\\"\""
+echo 'echo $string:'
+echo $string                            # '(]\{}$"
+echo 'echo "$string":'
+echo "$string"                          # '(]\{}$"
+echo
+IFS='\'                                # Input field separator
+echo 'IFS changed to "\"'
+echo 'echo $string:'
+echo $string                            # '(] {}$"      \ changed to ' '
+echo 'echo "$string":'
+echo "$string"                          # '(]\{}$"
