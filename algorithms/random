@@ -1,0 +1,19 @@
+#!/bin/bash
+# generate random numbers from min to max
+# usage: random min max
+
+FLOUR=${1:- 0}
+MAXCOUNT=10
+if [[ $# > 1 && $2 > $FLOUR ]]
+then 
+  RANGE=$[ $2-$FLOUR+1 ]
+else
+  RANGE=100
+fi
+
+for ((count=0; count <= $MAXCOUNT; count++))
+do
+  number=$[ ($RANDOM % $RANGE) + $FLOUR ]
+  echo $number
+done
+

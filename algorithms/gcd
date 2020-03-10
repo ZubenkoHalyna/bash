@@ -1,0 +1,42 @@
+#!/bin/bash
+#
+# Calculates the greatest common divisor (gcd) by the Euclidean algorithm.
+# usage: gcd num1 num2
+ARGS=2
+ERROR_BADARGS=65
+
+if [ $# != $ARGS ]
+then
+  echo "usage: $0 num1 num2"
+  exit $ERROR_BADARGS
+fi
+
+re='^[0-9]+$'
+if ! [[ $1 =~ $re ]]
+then 
+  echo "First argument should be an integer"
+  exit $ERROR_BADARGS
+fi
+
+if ! [[ $2 =~ $re ]]
+then
+  echo "Second argument should be an integer"
+  exit $ERROR_BADARGS
+fi
+
+gcd()
+{
+  dividend=$1
+  divisor=$2
+
+  remainder=1
+  until [ $remainder = 0 ]
+  do
+    remainder=$(($dividend % $divisor))
+    dividend=$divisor
+    divisor=$remainder
+  done
+}
+
+gcd $1 $2
+echo "gcd for $1 ad $2 is $dividend"
