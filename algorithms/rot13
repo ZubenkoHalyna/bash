@@ -1,0 +1,39 @@
+#!/bin/bash
+# encryption algorithm "rot13"
+# usage: rot13 filename
+
+setvar_rot_13()
+{
+  local varname=$1 varvalue=$2
+  eval $varname='$(echo "$varvalue" | tr a-zA-Z n-za-mN-ZA-M)'
+}
+
+ERROR_BADARGS=65
+ERROR_NOFILE=66
+
+if (( $# < 1 ))
+then
+  echo "usage: rot13 file"
+  exit $ERROR_BADARGS
+fi
+
+if [ ! -f $1 ]
+then
+  echo "file $1 dosn't exist"
+  exit $ERROR_NOFILE
+fi
+
+rot13file="$1.encrypted"
+OIFS=$IFS
+IFS=''
+
+while read line
+do
+  echo $line
+  setvar_rot_13 var $line
+  echo $var >> $rot13file
+done <$1
+
+IFS=$OIFS
+
+exit 03

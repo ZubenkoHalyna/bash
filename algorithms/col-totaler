@@ -1,0 +1,30 @@
+#!/bin/bash
+# Shows a sum of a column in a file
+# usage: col-totaler filename column-number
+
+ARGS=2
+ERROR_BADARGS=65
+ERROR_NOFILE=66
+
+if (( $# < $ARGS ))
+then
+  echo "usage: $0 filename column-number"
+  exit $ERROR_BADARGS
+fi
+
+filename=$1
+col_number=$2
+
+if [ -f filename ]
+then
+  echo "file $filename dosn't exist"
+  exit $ERROR_NOFILE
+fi
+
+export col_number
+
+awk '{ total += $ENVIRON["col_number"]
+}
+END { print total }' $filename
+
+exit 0
